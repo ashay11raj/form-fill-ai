@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><link rel="stylesheet" href="ui.css"></head>
+<body class="popup">
+  <h1>FormFill AI</h1>
+  <p>Fills the form on this page from your saved profile. Nothing is submitted.</p>
+  <div id="setup" class="notice" hidden>Add an API key and a profile before the first run. <a href="#" id="open-setup">Open settings</a></div>
+  <label for="profile">Profile</label>
+  <select id="profile"></select>
+  <label for="note">Note for this form (optional)</label>
+  <input type="text" id="note" placeholder="e.g. for my mother, use work address">
+  <div class="row" style="margin-top:12px"><button id="fill">Fill this page</button><button class="secondary" id="settings">Settings</button></div>
+  <label class="inline"><input type="checkbox" id="overwrite"> Also overwrite fields that already have a value</label>
+  <div id="status" role="status"></div>
+  <div id="results"></div>
+  <p class="note" style="margin-top:12px">Shortcut: Alt+Shift+F. Card details, passwords and one-time codes are never filled. On multi-step forms, fill each step.</p>
+  <script src="popup.js"></script>
+</body></html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>FormFill AI settings</title><link rel="stylesheet" href="ui.css"></head>
+<body class="options">
+  <h1>FormFill AI settings</h1>
+  <p>Everything is stored in this browser. Your profile is sent only to the AI provider you choose below, and only when you fill a form.</p>
+
+  <section>
+    <h2>AI provider</h2>
+    <label for="provider">Provider</label>
+    <select id="provider">
+      <option value="anthropic">Anthropic (Claude)</option>
+      <option value="openai">Other (OpenAI-style API: OpenAI, Gemini, Groq, OpenRouter, Ollama…)</option>
+    </select>
+    <label for="apiKey">API key</label>
+    <input type="password" id="apiKey" autocomplete="off" placeholder="sk-…">
+    <label for="model">Model</label>
+    <input type="text" id="model">
+    <label for="baseUrl">Base URL (optional)</label>
+    <input type="text" id="baseUrl" placeholder="Leave empty for the provider default">
+    <p class="note">A custom URL asks Chrome for permission to reach that host when you save.</p>
+  </section>
+
+  <section>
+    <h2>Profiles</h2>
+    <p>The agent answers only from the active profile. Keep one per person or purpose, for example Personal, Work, or a family member. Add anything forms tend to ask: addresses, contacts, links, canned answers under <code>custom_answers</code>.</p>
+    <label for="profileSelect">Active profile</label>
+    <div class="row">
+      <select id="profileSelect" style="flex:1;min-width:180px"></select>
+      <button class="secondary" id="newProfile" type="button">New</button>
+      <button class="secondary" id="renameProfile" type="button">Rename</button>
+      <button class="secondary" id="deleteProfile" type="button">Delete</button>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button class="secondary" id="sample" type="button">Load blank template</button>
+      <button class="secondary" id="fromResume" type="button">Fill from my resume</button>
+    </div>
+    <label for="resumeText">Resume text (only needed if you don't use a PDF with Anthropic)</label>
+    <textarea id="resumeText" rows="3" placeholder="Paste resume text here"></textarea>
+    <label for="profile">Profile JSON</label>
+    <textarea id="profile" rows="24" spellcheck="false"></textarea>
+    <p class="note" id="profileStatus"></p>
+  </section>
+
+  <section>
+    <h2>Resume file (optional)</h2>
+    <p>Attached automatically to resume/CV upload fields. A PDF also lets Claude build a profile for you.</p>
+    <input type="file" id="resumeFile" accept=".pdf,.doc,.docx">
+    <p class="note" id="resumeInfo"></p>
+  </section>
+
+  <section>
+    <h2>Preferences</h2>
+    <label for="extra">Extra instructions for the agent</label>
+    <textarea id="extra" rows="3" placeholder="e.g. Write dates as DD/MM/YYYY when the format is unclear. Keep written answers under 80 words."></textarea>
+    <label class="inline"><input type="checkbox" id="showButton"> Show the floating “Fill with FormFill AI” button on pages that have forms</label>
+    <label class="inline"><input type="checkbox" id="fillIdNumbers"> Allow filling ID numbers (Aadhaar, PAN, SSN, passport…) from my profile</label>
+    <p class="note">Off by default. When on, ID numbers in your profile are sent to your AI provider. Card details, passwords and one-time codes are never filled either way.</p>
+  </section>
+
+  <div class="row"><button id="save" type="button">Save settings</button><span id="saved" class="note" role="status"></span></div>
+  <script src="options.js"></script>
+</body></html>
